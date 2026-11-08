@@ -156,3 +156,7 @@ body :is(button,.button,.contactLink,.serviceLink):focus-visible{
 .footerBase nav{display:flex;gap:12px 24px;flex-wrap:wrap}
 @media(max-width:900px){.footerGrid{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.footerGrid{grid-template-columns:1fr;gap:24px}.footerBase{align-items:start;flex-direction:column}.footerBase nav{gap:10px 18px}}
+/* Hide native scrollbars on the page and nested scrolling fields. */
+html,body,body *{scrollbar-width:none!important;-ms-overflow-style:none}
+::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+
