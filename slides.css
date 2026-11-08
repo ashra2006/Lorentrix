@@ -1,0 +1,158 @@
+html{scroll-padding:0}body{background:#101010;color:#edf2f3;--ice:#65dbce}
+header,footer{background:#121212;border-color:#363533}
+.hero{background:#131312}.art{inset:0 0 0 38%;background:linear-gradient(90deg,#131312 0%,transparent 32%),linear-gradient(0deg,#131312,transparent 20%),url("assets/sculpture.png") center/cover no-repeat;filter:grayscale(1);opacity:.94}
+.hero h1{font-weight:520}.hero h1 span{font:italic .98em Georgia,serif;letter-spacing:-.075em;color:#edf2f3}
+.button,.contactLink{background:#e5edee;color:#191918;border:1px solid #e5edee;border-radius:2px}.button:hover,.contactLink:hover{background:#fff}.heroFoot,footer,#about,#contact{border-color:#403f3b}
+#services{padding:70px 0 0;background:#151514}.label,.sectionHead,.filters{margin-left:var(--pad);margin-right:var(--pad)}.sectionHead h2{font-family:Georgia,serif;font-weight:400;letter-spacing:-.055em}.filters button{border-radius:3px}
+#serviceList{isolation:isolate;position:relative;overflow:clip;margin-top:35px}
+.service{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(25px,5vw,90px);padding:clamp(28px,5vh,76px) var(--pad);background:#141413;border-top:1px solid #454541;box-shadow:0 -18px 40px #0005}
+.service.reverse{background:#1b1b19}.service.reverse .photo{grid-column:2;grid-row:1}.service.reverse .brief{grid-column:1;grid-row:1}.service[hidden]{display:none}
+.photo{position:relative;height:clamp(330px,72svh,800px);overflow:hidden}.photo img{height:100%;width:100%;object-fit:cover;filter:grayscale(1) contrast(1.04)}.brief small{color:#b4c1c3}.brief h3{font:400 clamp(32px,3.4vw,65px)/1.04 Georgia,serif;letter-spacing:-.055em;margin:16px 0}.brief p{font-size:16px;color:#c3cacc}.brief ul{list-style:none;padding:0}.brief li{border-top:1px solid #45443e;font-size:14px;line-height:1.55;color:#bcc5c7;padding:9px 0}.brief strong{color:#edf2f3}.brief strong::after{content:' —'}.serviceLink{color:#96e9df;border-bottom:1px solid #579c95;padding-bottom:3px}
+.slideControls{display:flex;align-items:center;gap:8px;margin-top:25px}.slideControls span{font:12px monospace;letter-spacing:.13em;color:#b8c1c2;margin-right:12px}.slideControls button{background:transparent;border:1px solid #77746c;border-radius:50%;width:38px;height:38px;color:#f1f5f5}.slideControls button:disabled{opacity:.28;cursor:default}.slideControls button:hover:enabled{background:#363633}
+#about{background:#1a1a18}#about img{filter:grayscale(1)}#contact{background:#101010}input,select,textarea{color:#ebf1f2;background:#20201e;border-color:#494842;color-scheme:dark}
+.paused{scroll-behavior:auto}.paused .service{position:relative;top:0}
+@media(prefers-reduced-motion:reduce){.service{position:relative;top:0}}
+@media(max-width:760px){.service{grid-template-columns:1fr;gap:22px;align-content:center;padding:28px var(--pad)}.service.reverse .photo,.service.reverse .brief{grid-column:auto;grid-row:auto}.photo{height:clamp(180px,32svh,310px)}.brief h3{font-size:32px}.slideControls{margin-top:18px}}
+@media(max-width:600px){.hero .art{inset:0 0 auto 0;height:300px;background:linear-gradient(0deg,#131312,transparent 34%),url("assets/sculpture.png") center/cover}.hero{background:#131312}.sectionHead h2{margin-top:12px}}
+
+/* Cool white typography and teal accents on charcoal. */
+:root{--heading:#eef3f4;--accent:#65dbce}
+body{--ice:var(--accent)}
+.hero h1,.sectionHead h2,#about h2,#contact h2{color:var(--heading)}
+.hero h1 span{color:var(--accent)}
+.art::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 25%,#29403f44 68%,#b5d3d222);mix-blend-mode:color}
+.hero::before{content:'';position:absolute;z-index:-1;inset:0;background:radial-gradient(ellipse at 85% 32%,#22575033,transparent 45%);pointer-events:none}
+.button,.contactLink,.filters [aria-pressed=true]{background:var(--heading);border-color:var(--heading);color:#101515}
+.button:hover,.contactLink:hover{background:#a9f2e9}
+.brief h3,.brief strong{color:var(--heading)}.serviceLink{color:var(--accent)}
+.brief small,.slideControls span,.brand i{color:var(--accent)}
+
+
+.photo img{filter:grayscale(.9) contrast(1.03)}
+.photo::after{content:'';position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 0 1px #f0f4f430;background:linear-gradient(145deg,transparent 58%,#161c1c33)}
+.slideControls button{border-color:#547473;color:var(--heading)}.slideControls button:hover:enabled{background:#1c4542}
+#about{background:#171919}#contact{background:linear-gradient(120deg,#151616,#1c2020)}
+html:not(.paused) .service .brief,html:not(.paused) .service .photo{opacity:var(--presence,1);transform:translateY(var(--lift,0))}
+@media(prefers-reduced-motion:reduce){html:not(.paused) .service .brief,html:not(.paused) .service .photo{opacity:1;transform:none}}
+
+#services{
+  padding-bottom:clamp(42px,6vw,90px);
+  background:
+    radial-gradient(ellipse at 5% 25%,#24343455,transparent 54%),
+    radial-gradient(ellipse at 96% 70%,#28363645,transparent 52%),
+    #111212;
+}
+#serviceList{padding:0 var(--pad);overflow:visible}
+.service,.service.reverse{
+  margin-bottom:clamp(32px,5vw,80px);
+  padding:clamp(22px,3.5vw,58px);
+  background:linear-gradient(135deg,#d4e2e018,#191b1bcc 53%,#272c2c70);
+  border:1px solid #c0cbcb48;border-radius:22px;
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  box-shadow:inset 0 1px 0 #f1f4f426,0 16px 40px #0003;
+}
+.photo{height:clamp(300px,57svh,590px);border-radius:12px}
+.service:last-child{margin-bottom:0}
+.hero h1 span{color:#65dbce}
+#contact form{background:linear-gradient(135deg,#dbe2e214,#28323244);border:1px solid #d6dddd44;border-radius:16px;padding:clamp(20px,3vw,40px);backdrop-filter:blur(16px)}
+@media(max-width:760px){.photo{height:clamp(180px,31svh,310px)}.service,.service.reverse{padding:18px;gap:22px}}
+/* The opening camera centers first on Process, then on its o. */
+body,header,footer,.hero,#services,#about,#contact{background-color:#141414}
+#services,#about,#contact,.hero{background-image:none}
+.service,.service.reverse{background:linear-gradient(125deg,#ffffff0c,#191a1acf 55%,#25282888);border-color:#737b7b69}
+.button,.contactLink,.filters [aria-pressed=true]{color:#091918;background:var(--accent);border-color:#79e1d6}
+.button:hover,.contactLink:hover{background:#9bece2}
+.hero h1 span{color:#eef3f4}.hero::before{background:none}
+.brandLogo,.introLogo{background:url("assets/lorentrix.png") left 35% / 100% auto no-repeat;filter:url(#logo-cutout)}
+.brandLogo{display:block;width:144px;aspect-ratio:5/1}
+.entrance{height:325svh;background:#141414}
+.entranceStage{position:sticky;top:0;min-height:100svh;overflow:clip}
+.entranceStage .hero{min-height:calc(100svh - 77px);height:auto}
+.curtain{position:absolute;inset:0;z-index:3;background:linear-gradient(#07070726,#07070732),url("assets/mountain-desktop.webp") center 43% / cover no-repeat #141414;display:grid;place-items:center;overflow:hidden;opacity:var(--cover,1)}
+.introType{position:relative;width:clamp(195px,55vw,680px);transform-origin:0 0;transform:translate(var(--panX,0px),var(--panY,0px)) scale(var(--zoom,1))}
+.introLogo{width:100%;aspect-ratio:5/1}
+.motto{margin:clamp(10px,2vh,22px) 0 0;white-space:nowrap;font:500 clamp(15px,3.55vw,46px)/1.05 Georgia,serif;letter-spacing:-.052em;color:#fff;text-align:center}
+.motto>span,.zoomLetter{display:inline-block}.processWord{position:relative;color:inherit}.zoomLetter{color:inherit}
+.entryFoot{position:absolute;bottom:6vh;left:var(--pad);right:var(--pad);display:flex;justify-content:space-between;align-items:center;color:#ced5d6;font:11px monospace;letter-spacing:.14em;opacity:var(--cue,1)}
+.entryFoot button{background:transparent;color:inherit;border:1px solid #627171;padding:9px 16px;border-radius:30px;letter-spacing:0}
+.curtain[hidden]{display:none}
+html:not(.paused) .sentence{opacity:var(--line,1)}
+.paused .entrance{height:auto}.paused .entranceStage{position:relative}.paused .curtain{display:none}
+@media(prefers-reduced-motion:reduce){.entrance{height:auto}.entranceStage{position:relative}.curtain{display:none}}
+
+@media(max-width:760px), (orientation:portrait){.curtain{background-image:linear-gradient(#07070726,#07070732),url("assets/mountain-mobile.webp");background-position:center}}
+/* The animated alpha layer follows the cloud banks in each mountain composition. */
+.curtain{--cloud-flow:url("assets/cloud-flow-desktop.webp");--cloud-position:center 43%}
+.curtain::before{content:'';position:absolute;inset:0;pointer-events:none;background:var(--cloud-flow) var(--cloud-position)/cover no-repeat}
+.introType,.entryFoot{z-index:1}
+@media(max-width:760px),(orientation:portrait){.curtain{--cloud-flow:url("assets/cloud-flow-mobile.webp");--cloud-position:center}}
+.paused .curtain::before{background-image:none}
+@media(prefers-reduced-motion:reduce){.curtain::before{background-image:none}}
+/* The star field begins beneath the hero, at the first content section. */
+main{
+  --matte:linear-gradient(125deg,rgba(68,68,68,.46),rgba(42,42,42,.52) 54%,rgba(49,49,49,.44));
+  display:flow-root;
+  padding-bottom:clamp(36px,6vw,88px);
+  background:#09090a linear-gradient(180deg,#09090a 0,transparent 160px) no-repeat;
+  background-image:linear-gradient(180deg,#101010 0,transparent 160px),linear-gradient(#08080936,#08080936),url("assets/starfield.jpg");
+  background-size:100% 180px,auto,clamp(480px,64vw,940px) auto;
+  background-position:top,center,center top;
+  background-repeat:no-repeat,repeat,repeat;
+}
+main #services{background:transparent}
+main #serviceList{isolation:auto}
+main .service,main .service.reverse,main #about,main #contact{
+  background:var(--matte);
+  border:1px solid #ffffff38;
+  border-radius:clamp(22px,2.6vw,38px);
+  -webkit-backdrop-filter:blur(9px) saturate(.76);
+  backdrop-filter:blur(9px) saturate(.76);
+  box-shadow:inset 0 1px 0 #fff2,inset 0 -1px 0 #ffffff0a,0 18px 48px #0005;
+}
+main #about,main #contact{
+  margin:0 var(--pad) clamp(32px,5vw,80px);
+  padding:clamp(22px,3.5vw,58px);
+}
+main #contact{margin-bottom:0}
+main #about img,main .photo{border-radius:clamp(12px,1.4vw,20px)}
+main #contact form{background:#16161650;border-color:#ffffff30;backdrop-filter:none}
+@media(max-width:760px){
+  main{background-size:100% 180px,auto,100vw auto}
+  main #about,main #contact{padding:20px}
+}
+
+/* Shared glass finish for actions, filter chips, and slideshow controls. */
+body :is(button,.button,.contactLink,.serviceLink){
+  --control-surface:linear-gradient(145deg,rgba(255,255,255,.13),rgba(31,31,31,.58));
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--control-surface);color:#f3f4f4;
+  border:1px solid #ffffff4a;border-radius:999px;
+  padding:9px 17px;min-height:40px;text-decoration:none;
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  box-shadow:inset 0 1px 0 #ffffff24,0 3px 10px #0003;
+  transition:border-color .18s,color .18s,box-shadow .18s;
+}
+body :is(.button,.contactLink,.serviceLink),body .filters button[aria-pressed=true]{
+  --control-surface:linear-gradient(145deg,rgba(101,219,206,.20),rgba(20,35,33,.60));
+  background:var(--control-surface);color:#9ae8df;border-color:#65dbce80;
+}
+body :is(.button,.contactLink,.serviceLink,button):hover:not(:disabled){
+  background:var(--control-surface);color:#c1f5ef;border-color:#65dbcec4;
+  box-shadow:inset 0 1px 0 #ffffff35,0 3px 12px #0005;
+}
+body .slideControls button{width:40px;height:40px;padding:0}
+body .slideControls button:disabled{opacity:.3;box-shadow:none}
+body :is(button,.button,.contactLink,.serviceLink):focus-visible{
+  outline:2px solid #65dbce;outline-offset:3px;
+}
+
+.siteFooter{display:block;background:#101111;padding:clamp(36px,6vw,80px) var(--pad) 24px}
+.footerGrid{display:grid;grid-template-columns:1fr 1.15fr 1.35fr .65fr;align-items:start;gap:clamp(24px,3vw,56px)}
+.footerGroup{display:grid;align-content:start;gap:7px;font-size:15px;line-height:1.55;color:#d5dddd}
+.footerGroup h2{font-family:inherit;font-size:12px;font-weight:600;line-height:1.4;text-transform:uppercase;letter-spacing:.1em;margin:0 0 8px;color:var(--accent)}
+.footerGroup address{font-style:normal}
+.footerGroup a{width:fit-content;max-width:100%;overflow-wrap:anywhere}
+.footerBase{border-top:1px solid #ffffff25;margin-top:36px;padding-top:20px;display:flex;align-items:center;justify-content:space-between;gap:20px;color:#c4cccc}
+.footerBase nav{display:flex;gap:12px 24px;flex-wrap:wrap}
+@media(max-width:900px){.footerGrid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.footerGrid{grid-template-columns:1fr;gap:24px}.footerBase{align-items:start;flex-direction:column}.footerBase nav{gap:10px 18px}}
