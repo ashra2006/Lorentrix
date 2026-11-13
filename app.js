@@ -165,24 +165,14 @@ $('form').onsubmit = async event => {
   event.preventDefault();
   const form = event.currentTarget;
   const fields = Object.fromEntries(new FormData(form));
-  if (!window.LORENTRIX_ENQUIRY_URL) {
-    const subject = 'Lorentrix enquiry — ' + fields.service;
-    const body = ['Name: ' + fields.name,'Work email: ' + fields.email,'Company: ' + fields.company,'Service: ' + fields.service,'','Project requirements:',fields.requirements].join('\n');
-    window.location.href = 'mailto:lorentrix.web@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    $('#status').textContent = 'Send the draft from your email app. You can also email lorentrix.web@gmail.com directly.';
-    return;
-  }
   const submit = form.querySelector('[type=submit]');
   submit.disabled = true;
+  $('#status').textContent = 'Sending your enquiry…';
   try {
-    const response = await fetch(window.LORENTRIX_ENQUIRY_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(fields)});
-    if(!response.ok) throw new Error();
+    const response = await fetch(window.LORENTRIX_ENQUIRY_URL || form.action,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(fields)});
+    if(!response.ok || (!window.LORENTRIX_ENQUIRY_URL && (await response.json()).sent !== true)) throw new Error();
     $('#status').textContent = 'Your enquiry has been sent.';
     form.reset();
   } catch { $('#status').textContent = 'Your enquiry could not be sent. Please try again.'; }
   finally { submit.disabled = false; }
 };
-if(window.LORENTRIX_ENQUIRY_URL) {
-  $('form button').textContent = 'Send enquiry ↗';
-  $('#status').textContent = 'Send your project details to Lorentrix.';
-}
